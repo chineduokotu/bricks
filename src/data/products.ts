@@ -35,7 +35,7 @@ export const products: Product[] = [
     name: 'Nest Bed Frame',
     price: 4200,
     description: 'A low-profile bed frame that appears to float above the floor. The upholstered headboard with deep channel stitching brings understated luxury to the bedroom.',
-    images: [`${base}/ps13.jpg`, `${base}/us46.jpg`, `${base}/us6.jpg`, `${base}/ps4.jpg`],
+    images: [`${base}/us3.jpg`, `${base}/us2.jpg`, `${base}/us6.jpg`, `${base}/ps4.jpg`],
     category: 'Bedroom',
     dimensions: '66"W x 84"D x 38"H',
     material: 'Walnut, Velvet Upholstery',
@@ -268,17 +268,8 @@ export const products: Product[] = [
 
 export const categories = ['Living Room', 'Bedroom', 'Workspace', 'Dining', 'Lighting', 'Decor'] as const;
 
-export const priceRanges = [
-  { label: 'Under $1,000', min: 0, max: 1000 },
-  { label: '$1,000 - $2,500', min: 1000, max: 2500 },
-  { label: '$2,500 - $5,000', min: 2500, max: 5000 },
-  { label: 'Over $5,000', min: 5000, max: Infinity },
-] as const;
-
-export type SortOption = 'popularity' | 'price-asc' | 'price-desc';
+export type SortOption = 'popularity';
 
 export const sortOptions: { label: string; value: SortOption }[] = [
   { label: 'Popularity', value: 'popularity' },
-  { label: 'Price: Low to High', value: 'price-asc' },
-  { label: 'Price: High to Low', value: 'price-desc' },
 ];

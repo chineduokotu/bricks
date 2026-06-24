@@ -3,6 +3,8 @@ import { Box } from '@mui/material';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import CartDrawer from './CartDrawer';
+import WhatsAppFloat from './WhatsAppFloat';
+import CookieConsent from './CookieConsent';
 
 export default function Layout() {
   return (
@@ -13,6 +15,8 @@ export default function Layout() {
       </Box>
       <Footer />
       <CartDrawer />
+      <WhatsAppFloat />
+      <CookieConsent />
     </Box>
   );
 }

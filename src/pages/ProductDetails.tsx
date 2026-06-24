@@ -97,7 +97,7 @@ export default function ProductDetails() {
           <Box
             sx={{
               width: '100%',
-              height: { xs: 400, md: 600 },
+              height: { xs: 280, md: 600 },
               bgcolor: '#F5F5F5',
               mb: 2,
               overflow: 'hidden',
@@ -120,7 +120,7 @@ export default function ProductDetails() {
                   onClick={() => setSelectedImage(index)}
                   sx={{
                     width: '100%',
-                    height: 120,
+                    height: { xs: 80, md: 120 },
                     objectFit: 'cover',
                     cursor: 'pointer',
                     border: '2px solid',
@@ -163,10 +163,6 @@ export default function ProductDetails() {
               {product.rating} ({product.reviews} reviews)
             </Typography>
           </Box>
-
-          <Typography variant="h4" sx={{ mb: 4, fontWeight: 500 }}>
-            ${product.price.toLocaleString()}
-          </Typography>
 
           <Typography variant="body1" sx={{ color: 'text.secondary', mb: 4 }}>
             {product.description}

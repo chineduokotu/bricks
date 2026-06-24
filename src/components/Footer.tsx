@@ -45,7 +45,7 @@ export default function Footer() {
               component="img"
               src={logo}
               alt="BRICKS"
-              sx={{ height: 38, width: 'auto', mb: 2 }}
+               sx={{ height: { xs: 48, md: 68 }, width: 'auto', mb: 2 }}
             />
             <Typography variant="body2" sx={{ color: '#9E9E9E', mb: 3, maxWidth: 320 }}>
               Curated furniture for intentional living. Each piece is designed to last,

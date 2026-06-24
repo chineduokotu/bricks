@@ -52,10 +52,10 @@ export default function ProductCard({ product }: ProductCardProps) {
       <Box sx={{ position: 'relative', overflow: 'hidden' }}>
         <CardMedia
           component="img"
-          height={320}
           image={product.images[0]}
           alt={product.name}
           sx={{
+            height: { xs: 200, md: 320 },
             objectFit: 'cover',
             transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             transform: isHovered ? 'scale(1.05)' : 'scale(1)',
@@ -70,9 +70,13 @@ export default function ProductCard({ product }: ProductCardProps) {
             p: 2,
             display: 'flex',
             justifyContent: 'center',
-            opacity: isHovered ? 1 : 0,
-            transform: isHovered ? 'translateY(0)' : 'translateY(10px)',
+            opacity: { xs: 1, md: isHovered ? 1 : 0 },
+            transform: { xs: 'translateY(0)', md: isHovered ? 'translateY(0)' : 'translateY(10px)' },
             transition: 'all 0.3s ease',
+            '@media (hover: none)': {
+              opacity: 1,
+              transform: 'translateY(0)',
+            },
           }}
         >
           <IconButton
@@ -111,9 +115,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             ({product.reviews})
           </Typography>
         </Box>
-        <Typography variant="body1" sx={{ fontWeight: 600 }}>
-          ${product.price.toLocaleString()}
-        </Typography>
       </CardContent>
     </Card>
   );

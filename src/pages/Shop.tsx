@@ -10,22 +10,17 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  FormControl,
-  Select,
-  MenuItem,
   Button,
   Chip,
   Stack,
   IconButton,
-  Divider,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 import ProductCard from '../components/ProductCard';
-import { products, categories, priceRanges, sortOptions } from '../data/products';
-import type { SortOption } from '../data/products';
+import { products, categories } from '../data/products';
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,8 +29,6 @@ export default function Shop() {
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   const selectedCategory = searchParams.get('category') || '';
-  const selectedPriceRange = searchParams.get('price') || '';
-  const selectedSort = (searchParams.get('sort') || 'popularity') as SortOption;
 
   const updateParams = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -54,26 +47,10 @@ export default function Shop() {
       result = result.filter((p) => p.category === selectedCategory);
     }
 
-    if (selectedPriceRange) {
-      const range = priceRanges.find((r) => r.label === selectedPriceRange);
-      if (range) {
-        result = result.filter((p) => p.price >= range.min && p.price < range.max);
-      }
-    }
-
-    switch (selectedSort) {
-      case 'price-asc':
-        result.sort((a, b) => a.price - b.price);
-        break;
-      case 'price-desc':
-        result.sort((a, b) => b.price - a.price);
-        break;
-      default:
-        result.sort((a, b) => b.reviews - a.reviews);
-    }
+    result.sort((a, b) => b.reviews - a.reviews);
 
     return result;
-  }, [selectedCategory, selectedPriceRange, selectedSort]);
+  }, [selectedCategory]);
 
   const filters = (
     <Box sx={{ p: isMobile ? 2 : 0 }}>
@@ -112,33 +89,6 @@ export default function Shop() {
         ))}
       </List>
 
-      <Divider sx={{ mb: 3 }} />
-
-      <Typography variant="h6" sx={{ mb: 2, fontSize: '0.8125rem', letterSpacing: '0.1em' }}>
-        Price Range
-      </Typography>
-      <List dense disablePadding sx={{ mb: 4 }}>
-        <ListItem disablePadding>
-          <ListItemButton
-            selected={!selectedPriceRange}
-            onClick={() => updateParams('price', '')}
-            sx={{ py: 0.5 }}
-          >
-            <ListItemText primary="All" slotProps={{ primary: { variant: 'body2' } }} />
-          </ListItemButton>
-        </ListItem>
-        {priceRanges.map((range) => (
-          <ListItem key={range.label} disablePadding>
-            <ListItemButton
-              selected={selectedPriceRange === range.label}
-              onClick={() => updateParams('price', range.label)}
-              sx={{ py: 0.5 }}
-            >
-              <ListItemText primary={range.label} slotProps={{ primary: { variant: 'body2' } }} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 
@@ -161,49 +111,25 @@ export default function Shop() {
             {filteredProducts.length} product{filteredProducts.length !== 1 && 's'}
           </Typography>
         </Box>
-        <Stack direction="row" spacing={2} alignItems="center">
-          {isMobile && (
-            <Button
-              variant="outlined"
-              startIcon={<FilterListIcon />}
-              onClick={() => setMobileFilterOpen(true)}
-            >
-              Filters
-            </Button>
-          )}
-          <FormControl size="small" sx={{ minWidth: 160 }}>
-            <Select
-              value={selectedSort}
-              onChange={(e) => updateParams('sort', e.target.value)}
-              sx={{ borderRadius: 0 }}
-            >
-              {sortOptions.map((opt) => (
-                <MenuItem key={opt.value} value={opt.value}>
-                  {opt.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Stack>
+        {isMobile && (
+          <Button
+            variant="outlined"
+            startIcon={<FilterListIcon />}
+            onClick={() => setMobileFilterOpen(true)}
+          >
+            Filters
+          </Button>
+        )}
       </Box>
 
       {/* Active Filters */}
-      {(selectedCategory || selectedPriceRange) && (
+      {selectedCategory && (
         <Stack direction="row" spacing={1} sx={{ mb: 3 }} flexWrap="wrap" useFlexGap>
-          {selectedCategory && (
-            <Chip
-              label={selectedCategory}
-              onDelete={() => updateParams('category', '')}
-              size="small"
-            />
-          )}
-          {selectedPriceRange && (
-            <Chip
-              label={selectedPriceRange}
-              onDelete={() => updateParams('price', '')}
-              size="small"
-            />
-          )}
+          <Chip
+            label={selectedCategory}
+            onDelete={() => updateParams('category', '')}
+            size="small"
+          />
         </Stack>
       )}
 

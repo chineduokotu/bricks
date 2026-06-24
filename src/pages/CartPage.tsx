@@ -8,16 +8,28 @@ import {
   IconButton,
   Select,
   MenuItem,
-  Divider,
   Paper,
   Stack,
 } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { useCart } from '../hooks/useCart';
 
+const WHATSAPP_NUMBER = '2349030181800';
+
 export default function CartPage() {
-  const { items, totalPrice, updateQuantity, removeItem, clearCart } = useCart();
+  const { items, updateQuantity, removeItem, clearCart } = useCart();
+
+  const handleWhatsAppOrder = () => {
+    const itemLines = items
+      .map((item) => `- ${item.product.name} x${item.quantity}`)
+      .join('\n');
+    const message = encodeURIComponent(
+      `Hi, I'd like to order:\n\nItems:\n${itemLines}\n\nThank you!`
+    );
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+  };
 
   if (items.length === 0) {
     return (
@@ -79,8 +91,8 @@ export default function CartPage() {
                     src={item.product.images[0]}
                     alt={item.product.name}
                     sx={{
-                      width: 120,
-                      height: 150,
+                      width: { xs: 80, md: 120 },
+                      height: { xs: 100, md: 150 },
                       objectFit: 'cover',
                     }}
                   />
@@ -126,15 +138,6 @@ export default function CartPage() {
                     </IconButton>
                   </Box>
                 </Box>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 600,
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  ${(item.product.price * item.quantity).toLocaleString()}
-                </Typography>
               </Paper>
             ))}
           </Stack>
@@ -143,7 +146,7 @@ export default function CartPage() {
         <Grid item xs={12} md={4}>
           <Paper
             sx={{
-              p: 4,
+              p: { xs: 3, md: 4 },
               border: '1px solid',
               borderColor: 'divider',
               position: 'sticky',
@@ -153,40 +156,18 @@ export default function CartPage() {
             <Typography variant="h6" sx={{ mb: 3 }}>
               Order Summary
             </Typography>
-            <Stack spacing={2}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  Subtotal
-                </Typography>
-                <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                  ${totalPrice.toLocaleString()}
-                </Typography>
-              </Box>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  Shipping
-                </Typography>
-                <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                  Calculated at checkout
-                </Typography>
-              </Box>
-              <Divider />
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h6">Total</Typography>
-                <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                  ${totalPrice.toLocaleString()}
-                </Typography>
-              </Box>
-            </Stack>
+            <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3 }}>
+              {items.length} item{items.length !== 1 ? 's' : ''} in your cart
+            </Typography>
             <Button
-              component={RouterLink}
-              to="/checkout"
               variant="contained"
               fullWidth
               size="large"
-              sx={{ mt: 3 }}
+              onClick={handleWhatsAppOrder}
+              endIcon={<WhatsAppIcon />}
+              sx={{ bgcolor: '#25D366', '&:hover': { bgcolor: '#1DA851' } }}
             >
-              Proceed to Checkout
+              Order via WhatsApp
             </Button>
             <Button
               variant="text"

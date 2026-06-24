@@ -15,13 +15,16 @@ import {
   Divider,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { useCart } from '../hooks/useCart';
 
-const steps = ['Shipping', 'Payment', 'Review'];
+const steps = ['Shipping', 'Review'];
+
+const WHATSAPP_NUMBER = '2349030181800';
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = useState(0);
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, clearCart } = useCart();
   const navigate = useNavigate();
 
   const [shipping, setShipping] = useState({
@@ -35,27 +38,12 @@ export default function Checkout() {
     phone: '',
   });
 
-  const [payment, setPayment] = useState({
-    cardNumber: '',
-    cardName: '',
-    expiryDate: '',
-    cvv: '',
-  });
-
   const handleShippingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setShipping({ ...shipping, [e.target.name]: e.target.value });
   };
 
-  const handlePaymentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPayment({ ...payment, [e.target.name]: e.target.value });
-  };
-
   const isShippingValid = () => {
     return Object.values(shipping).every((v) => v.trim() !== '');
-  };
-
-  const isPaymentValid = () => {
-    return Object.values(payment).every((v) => v.trim() !== '');
   };
 
   const handleNext = () => {
@@ -66,7 +54,31 @@ export default function Checkout() {
     setActiveStep((prev) => prev - 1);
   };
 
-  const handlePlaceOrder = () => {
+  const buildWhatsAppMessage = () => {
+    const itemLines = items
+      .map((item) => `- ${item.product.name} x${item.quantity}`)
+      .join('\n');
+
+    return `Hi, I'd like to place an order:
+
+Items:
+${itemLines}
+
+Shipping:
+Name: ${shipping.firstName} ${shipping.lastName}
+Address: ${shipping.address}
+City: ${shipping.city}
+State: ${shipping.state}
+ZIP: ${shipping.zipCode}
+Email: ${shipping.email}
+Phone: ${shipping.phone}
+
+Thank you!`;
+  };
+
+  const handleWhatsAppOrder = () => {
+    const message = encodeURIComponent(buildWhatsAppMessage());
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
     clearCart();
     navigate('/');
   };
@@ -163,63 +175,6 @@ export default function Checkout() {
     </Box>
   );
 
-  const renderPayment = () => (
-    <Box>
-      <Typography variant="h6" sx={{ mb: 3 }}>
-        Payment Details
-      </Typography>
-      <Grid container spacing={2.5}>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            label="Card Number"
-            name="cardNumber"
-            value={payment.cardNumber}
-            onChange={handlePaymentChange}
-            placeholder="0000 0000 0000 0000"
-            required
-            inputProps={{ maxLength: 19 }}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            label="Name on Card"
-            name="cardName"
-            value={payment.cardName}
-            onChange={handlePaymentChange}
-            required
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            fullWidth
-            label="Expiry Date"
-            name="expiryDate"
-            value={payment.expiryDate}
-            onChange={handlePaymentChange}
-            placeholder="MM/YY"
-            required
-            inputProps={{ maxLength: 5 }}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            fullWidth
-            label="CVV"
-            name="cvv"
-            value={payment.cvv}
-            onChange={handlePaymentChange}
-            placeholder="123"
-            required
-            inputProps={{ maxLength: 4 }}
-            type="password"
-          />
-        </Grid>
-      </Grid>
-    </Box>
-  );
-
   const renderReview = () => (
     <Box>
       <Typography variant="h6" sx={{ mb: 3 }}>
@@ -253,21 +208,9 @@ export default function Checkout() {
             <Typography variant="body2">
               {item.product.name} x{item.quantity}
             </Typography>
-            <Typography variant="body2" sx={{ fontWeight: 500 }}>
-              ${(item.product.price * item.quantity).toLocaleString()}
-            </Typography>
           </Box>
         ))}
       </Stack>
-
-      <Divider sx={{ mb: 2 }} />
-
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography variant="h6">Total</Typography>
-        <Typography variant="h6" sx={{ fontWeight: 600 }}>
-          ${totalPrice.toLocaleString()}
-        </Typography>
-      </Box>
     </Box>
   );
 
@@ -288,10 +231,7 @@ export default function Checkout() {
 
       <Grid container spacing={6}>
         <Grid item xs={12} md={8}>
-          <Stepper
-            activeStep={activeStep}
-            sx={{ mb: 6 }}
-          >
+          <Stepper activeStep={activeStep} sx={{ mb: 6 }}>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
@@ -301,8 +241,7 @@ export default function Checkout() {
 
           <Paper sx={{ p: 4, border: '1px solid', borderColor: 'divider' }}>
             {activeStep === 0 && renderShipping()}
-            {activeStep === 1 && renderPayment()}
-            {activeStep === 2 && renderReview()}
+            {activeStep === 1 && renderReview()}
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
               <Button
@@ -315,18 +254,17 @@ export default function Checkout() {
               {activeStep === steps.length - 1 ? (
                 <Button
                   variant="contained"
-                  onClick={handlePlaceOrder}
+                  onClick={handleWhatsAppOrder}
+                  endIcon={<WhatsAppIcon />}
+                  sx={{ bgcolor: '#25D366', '&:hover': { bgcolor: '#1DA851' } }}
                 >
-                  Place Order
+                  Order via WhatsApp
                 </Button>
               ) : (
                 <Button
                   variant="contained"
                   onClick={handleNext}
-                  disabled={
-                    (activeStep === 0 && !isShippingValid()) ||
-                    (activeStep === 1 && !isPaymentValid())
-                  }
+                  disabled={!isShippingValid()}
                 >
                   Next
                 </Button>
@@ -373,22 +311,12 @@ export default function Checkout() {
                       Qty: {item.quantity}
                     </Typography>
                   </Box>
-                  <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                    ${(item.product.price * item.quantity).toLocaleString()}
-                  </Typography>
                 </Box>
               ))}
             </Stack>
-            <Divider sx={{ my: 3 }} />
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="body1">Subtotal</Typography>
-              <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                ${totalPrice.toLocaleString()}
-              </Typography>
-            </Box>
             <Typography
               variant="caption"
-              sx={{ color: 'text.secondary', display: 'block', mt: 1 }}
+              sx={{ color: 'text.secondary', display: 'block', mt: 2 }}
             >
               Shipping calculated at checkout
             </Typography>

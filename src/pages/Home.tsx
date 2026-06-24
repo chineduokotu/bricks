@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { keyframes } from '@mui/material/styles';
 import {
   Box,
   Container,
@@ -15,9 +17,16 @@ import { products, categories } from '../data/products';
 
 const base = '/images';
 
+const heroImages = [
+  `${base}/doxa19.jpeg`,
+  `${base}/doxa17.jpeg`,
+  `${base}/doxa18.jpeg`,
+  `${base}/ps8.jpg`,
+];
+
 const categoryImages: Record<string, string> = {
-  'Living Room': `${base}/us7.jpg`,
-  'Bedroom': `${base}/ps13.jpg`,
+  'Living Room': `${base}/dox3.jpeg`,
+  'Bedroom': `${base}/ps6.jpg`,
   'Workspace': `${base}/ps14.jpg`,
   'Dining': `${base}/ps4.jpg`,
   'Lighting': `${base}/us4.jpg`,
@@ -26,82 +35,125 @@ const categoryImages: Record<string, string> = {
 
 const bestSellers = products.filter((p) => p.id <= 8);
 
+const zoomIn = keyframes`
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+`;
+
 export default function Home() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
       <Box
         sx={{
-          minHeight: { xs: '80vh', md: '90vh' },
+          position: 'relative',
+          minHeight: { xs: '70vh', md: '90vh' },
           display: 'flex',
           alignItems: 'center',
-          bgcolor: 'background.paper',
           borderBottom: '1px solid',
           borderColor: 'divider',
+          overflow: 'hidden',
+          mt: { xs: '-64px', md: '-72px' },
         }}
       >
-        <Container maxWidth="xl">
-          <Grid container alignItems="center" spacing={6}>
-            <Grid item xs={12} md={6}>
-              <Typography
-                variant="h1"
-                component="h1"
-                sx={{
-                  mb: 3,
-                  maxWidth: 600,
-                }}
-              >
-                Furniture for
-                <Box component="span" sx={{ display: 'block', fontStyle: 'italic', fontWeight: 300 }}>
-                  intentional living
-                </Box>
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: 'text.secondary',
-                  mb: 5,
-                  maxWidth: 440,
-                  fontSize: '1.125rem',
-                }}
-              >
-                Curated pieces designed to bring balance and beauty to your space.
-                Crafted to last, made to be loved.
-              </Typography>
-              <Button
-                component={RouterLink}
-                to="/shop"
-                variant="contained"
-                size="large"
-                endIcon={<ArrowForwardIcon />}
-              >
-                Explore Collection
-              </Button>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  position: 'relative',
-                  width: '100%',
-                  height: { xs: 400, md: 600 },
-                  bgcolor: '#EEEEEE',
-                  overflow: 'hidden',
-                }}
-              >
-                <Box
-                  component="img"
-                  src={`${base}/us7.jpg`}
-                  alt="Hero furniture"
-                  sx={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
+        {heroImages.map((src, index) => (
+          <Box
+            key={src}
+            component="img"
+            src={src}
+            alt={`Hero furniture ${index + 1}`}
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: index === activeIndex ? 1 : 0,
+              transform: 'scale(1)',
+              transition: 'opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              animation: index === activeIndex ? `${zoomIn} 5s ease-in-out` : 'none',
+            }}
+          />
+        ))}
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            bgcolor: 'rgba(0, 0, 0, 0.4)',
+          }}
+        />
+        <Box
+          sx={{
+            position: 'relative',
+            zIndex: 1,
+            px: { xs: 2, md: 8 },
+            py: { xs: 6, md: 0 },
+            pt: { xs: '64px', md: '72px' },
+            maxWidth: 680,
+          }}
+        >
+          <Typography
+            variant="h1"
+            component="h1"
+            sx={{ mb: 3, color: '#FFFFFF', fontWeight: 600 }}
+          >
+            Furniture for{' '}
+            <Box
+              component="span"
+              sx={{
+                fontFamily: '"Playfair Display", serif',
+                fontStyle: 'italic',
+                fontWeight: 700,
+                display: 'block',
+                color: '#FFFFFF',
+              }}
+            >
+              intentional living
+            </Box>
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              color: 'rgba(255, 255, 255, 0.85)',
+              mb: 5,
+              maxWidth: 440,
+              fontSize: '1.125rem',
+              lineHeight: 1.7,
+              fontWeight: 500,
+            }}
+          >
+            Curated pieces designed to bring balance and beauty to your space.
+            Crafted to last, made to be loved.
+          </Typography>
+          <Button
+            component={RouterLink}
+            to="/shop"
+            variant="contained"
+            size="large"
+            endIcon={<ArrowForwardIcon />}
+            sx={{
+              borderRadius: 0,
+              bgcolor: '#FFFFFF',
+              color: '#1A1A1A',
+              letterSpacing: '0.1em',
+              fontWeight: 700,
+              px: { xs: 3, md: 5 },
+              py: 1.5,
+              '&:hover': { bgcolor: '#f0f0f0' },
+            }}
+          >
+            Explore Collection
+          </Button>
+        </Box>
       </Box>
 
       {/* Featured Collections */}
@@ -135,7 +187,7 @@ export default function Home() {
                   to={`/shop?category=${cat}`}
                   sx={{
                     position: 'relative',
-                    height: 320,
+                    height: { xs: 200, md: 320 },
                     textDecoration: 'none',
                     color: 'inherit',
                     border: '1px solid',
@@ -207,7 +259,7 @@ export default function Home() {
           >
             <Box>
               <Typography variant="h3" component="h2" sx={{ mb: 1 }}>
-                Best Sellers
+                Best Selling Pieces
               </Typography>
               <Typography variant="body1" sx={{ color: 'text.secondary', maxWidth: 400 }}>
                 Our most beloved pieces, chosen by customers who value quality
