@@ -398,7 +398,7 @@ export default function Navbar() {
             ].map((item) => (
               <ListItem key={item.label} disablePadding sx={{ mb: 0.5 }}>
                 <ListItemButton
-                  component={item.path ? RouterLink : undefined}
+                  component={item.path ? RouterLink : 'div'}
                   {...(item.path ? { to: item.path } : {})}
                   sx={{ borderRadius: 0, px: 2, py: 1 }}
                   onClick={() => setMobileOpen(false)}
