@@ -106,7 +106,7 @@ export default function Footer() {
                 {section.links.map((link) => (
                   <Link
                     key={link}
-                    href="#"
+                    href={link === 'Contact Us' ? '/contact' : '#'}
                     underline="none"
                     sx={{
                       color: '#9E9E9E',

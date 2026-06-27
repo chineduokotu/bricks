@@ -41,8 +41,8 @@ const WHATSAPP_NUMBER = '2349030181800';
 const desktopLinks = [
   { label: 'Home', path: '/' },
   { label: 'Shop', path: '/shop' },
-  { label: 'About', path: '' },
-  { label: 'Contact', path: '' },
+  { label: 'About', path: '/about' },
+  { label: 'Contact', path: '/contact' },
 ];
 
 const shopCategories = ['Living Room', 'Bedroom', 'Dining', 'Office', 'Accessories'];
@@ -118,7 +118,7 @@ export default function Navbar() {
                         onMouseEnter={handleShopOpen}
                         onMouseLeave={handleShopClose}
                       >
-                        <Button
+                        <Box
                           component={RouterLink}
                           to={link.path!}
                           sx={{
@@ -126,8 +126,14 @@ export default function Navbar() {
                             letterSpacing: '0.05em',
                             fontWeight: isActive(link.path!) ? 600 : 400,
                             fontSize: '0.8125rem',
+                            textDecoration: 'none',
                             bgcolor: 'transparent',
                             position: 'relative',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            px: 0.5,
+                            py: 0.5,
+                            zIndex: 1500,
                             '&:hover': { bgcolor: 'transparent', opacity: 0.7 },
                             '&::after': isActive(link.path!)
                               ? {
@@ -143,20 +149,26 @@ export default function Navbar() {
                           }}
                         >
                           {link.label}
-                        </Button>
+                        </Box>
                         <Menu
                           anchorEl={shopAnchorEl}
                           open={Boolean(shopAnchorEl)}
                           onClose={handleShopClose}
                           MenuListProps={{ onMouseLeave: handleShopClose }}
                           elevation={0}
+                          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
                           sx={{
-                            mt: 1,
+                            mt: 0,
+                            zIndex: 1400,
                             '& .MuiPaper-root': {
                               border: '1px solid',
                               borderColor: 'divider',
                               borderRadius: 0,
                               minWidth: 200,
+                              mt: '8px',
+                              boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
+                              bgcolor: '#FFFFFF',
                             },
                           }}
                         >
@@ -186,6 +198,8 @@ export default function Navbar() {
                       key={link.label}
                       component={RouterLink}
                       to={link.path}
+                      disableRipple
+                      disableFocusRipple
                       sx={{
                         color: isScrolled ? 'text.primary' : '#FFFFFF',
                         letterSpacing: '0.05em',
@@ -194,6 +208,12 @@ export default function Navbar() {
                         bgcolor: 'transparent',
                         position: 'relative',
                         '&:hover': { bgcolor: 'transparent', opacity: 0.7 },
+                        '&:focus-visible, &:focus, &:active, &.Mui-focusVisible': {
+                          bgcolor: 'transparent',
+                        },
+                        '& .MuiTouchRipple-root': {
+                          display: 'none',
+                        },
                       }}
                     >
                       {link.label}
@@ -371,11 +391,20 @@ export default function Navbar() {
 
           {/* Secondary Links */}
           <List sx={{ px: 2 }}>
-            {['About', 'Contact', 'Track Order'].map((label) => (
-              <ListItem key={label} disablePadding sx={{ mb: 0.5 }}>
-                <ListItemButton sx={{ borderRadius: 0, px: 2, py: 1 }}>
+            {[
+              { label: 'About', path: '/about' },
+              { label: 'Contact', path: '/contact' },
+              { label: 'Track Order' },
+            ].map((item) => (
+              <ListItem key={item.label} disablePadding sx={{ mb: 0.5 }}>
+                <ListItemButton
+                  component={item.path ? RouterLink : undefined}
+                  {...(item.path ? { to: item.path } : {})}
+                  sx={{ borderRadius: 0, px: 2, py: 1 }}
+                  onClick={() => setMobileOpen(false)}
+                >
                   <ListItemText
-                    primary={label}
+                    primary={item.label}
                     slotProps={{
                       primary: { variant: 'body2', color: 'text.secondary' },
                     }}
