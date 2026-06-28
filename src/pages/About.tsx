@@ -45,7 +45,7 @@ export default function About() {
           <Grid item xs={12} md={6}>
             <Box
               component="img"
-              src="/images/about-hero.jpg"
+              src="/images/brick.jpeg"
               alt="About The Brick"
               sx={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 0, minHeight: 420 }}
             />
