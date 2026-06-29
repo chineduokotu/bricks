@@ -1,7 +1,16 @@
 import { Box, Container, Grid, Typography, Button, Stack } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 
 export default function About() {
+  useSEO({
+    title: 'About BRICKS — Our Story & Vision | Luxury Furniture Nigeria',
+    description:
+      'Learn about BRICKS Furniture — Nigeria’s premier luxury furniture brand. We craft timeless pieces designed for intentional living. Discover our story, values, and craftsmanship.',
+    keywords:
+      'about BRICKS furniture, luxury furniture brand Nigeria, Nigerian furniture company, intentional living furniture, premium furniture makers Nigeria',
+    canonical: '/about',
+  });
   return (
     <Box sx={{ py: { xs: 8, md: 12 } }}>
       <Container maxWidth="xl">

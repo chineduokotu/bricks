@@ -3,12 +3,51 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { useSEO } from '../hooks/useSEO';
 
 export default function Contact() {
   const address = '108 Akpakpava Road, beside Keystone Bank, Benin City, Edo State';
   const phone = '09060753966';
   const whatsapp = '09030181800';
   const whatsappLink = 'https://wa.me/2349030181800';
+
+  useSEO({
+    title: 'Contact BRICKS Furniture — Visit Our Store | Benin City, Nigeria',
+    description:
+      'Contact BRICKS Furniture. Visit our showroom at 108 Akpakpava Road, Benin City, Edo State. Call us on 09060753966 or WhatsApp 09030181800. Premium furniture for Nigerian homes.',
+    keywords:
+      'BRICKS furniture contact, furniture store Benin City, furniture showroom Edo State, buy luxury furniture Nigeria, contact furniture store Nigeria',
+    canonical: '/contact',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'FurnitureStore',
+      name: 'BRICKS Furniture',
+      url: 'https://www.thebrick.com.ng',
+      telephone: '+2349060753966',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '108 Akpakpava Road, beside Keystone Bank',
+        addressLocality: 'Benin City',
+        addressRegion: 'Edo State',
+        addressCountry: 'NG',
+      },
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: '+2349060753966',
+          contactType: 'customer service',
+        },
+        {
+          '@type': 'ContactPoint',
+          telephone: '+2349030181800',
+          contactType: 'sales',
+        },
+      ],
+      openingHours: 'Mo-Sa 09:00-18:00',
+      priceRange: '₦₦₦',
+    },
+  });
+
 
   return (
     <Box sx={{ py: { xs: 8, md: 12 } }}>

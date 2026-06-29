@@ -23,6 +23,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { useCart } from '../hooks/useCart';
 import { products } from '../data/products';
+import { useSEO } from '../hooks/useSEO';
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
@@ -30,6 +31,56 @@ export default function ProductDetails() {
   const { addItem, openDrawer } = useCart();
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+
+  // ── Per-product SEO ──────────────────────────────────────────
+  useSEO({
+    title: product
+      ? `${product.name} — Buy Online | BRICKS Furniture`
+      : 'Product Not Found | BRICKS Furniture',
+    description: product
+      ? `${product.description} Shop the ${product.name} at BRICKS Furniture Nigeria. ${product.material}. Dimensions: ${product.dimensions}.`
+      : 'This product could not be found. Explore our full furniture collection.',
+    keywords: product
+      ? `${product.name}, ${product.category} Nigeria, ${product.material}, buy ${product.category.toLowerCase()} furniture Nigeria, BRICKS furniture`
+      : '',
+    canonical: product ? `/product/${product.id}` : '/shop',
+    ogImage: product
+      ? `https://www.thebrick.com.ng${product.images[0]}`
+      : 'https://www.thebrick.com.ng/images/dox26.jpeg',
+    ogType: 'product',
+    structuredData: product
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: product.name,
+          description: product.description,
+          image: product.images.map(
+            (img) => `https://www.thebrick.com.ng${img}`
+          ),
+          sku: `BRICKS-${product.id}`,
+          brand: { '@type': 'Brand', name: 'BRICKS Furniture' },
+          material: product.material,
+          offers: {
+            '@type': 'Offer',
+            url: `https://www.thebrick.com.ng/product/${product.id}`,
+            priceCurrency: 'NGN',
+            price: product.price,
+            availability: product.inStock
+              ? 'https://schema.org/InStock'
+              : 'https://schema.org/OutOfStock',
+            seller: { '@type': 'Organization', name: 'BRICKS Furniture' },
+          },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: product.rating,
+            reviewCount: product.reviews,
+            bestRating: 5,
+            worstRating: 1,
+          },
+          category: product.category,
+        }
+      : undefined,
+  });
 
   if (!product) {
     return (

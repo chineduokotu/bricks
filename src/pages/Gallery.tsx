@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 import {
   Box,
   Container,
@@ -31,6 +32,16 @@ const CATEGORIES = [
 ];
 
 export default function GalleryPage() {
+  useSEO({
+    title: 'Furniture Gallery — BRICKS Luxury Furniture Nigeria',
+    description:
+      'Explore the BRICKS Furniture gallery. Browse stunning photography and videos of our luxury dining sets, living room sofas, bedroom collections, and décor — all crafted for Nigerian homes.',
+    keywords:
+      'furniture gallery Nigeria, luxury furniture photos, BRICKS furniture gallery, interior design Nigeria, dining set photos, living room sofa Nigeria',
+    canonical: '/gallery',
+    ogImage: 'https://www.thebrick.com.ng/images/dox26.jpeg',
+  });
+
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [mediaFilter, setMediaFilter] = useState<'all' | 'image' | 'video'>('all');
   const [activeItem, setActiveItem] = useState<GalleryItem | null>(null);

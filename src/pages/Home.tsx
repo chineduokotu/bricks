@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 import { keyframes } from '@mui/material/styles';
 import {
   Box,
@@ -41,6 +42,24 @@ const zoomIn = keyframes`
 `;
 
 export default function Home() {
+  useSEO({
+    title: 'BRICKS — Luxury Furniture for Intentional Living | Nigeria',
+    description:
+      'Shop premium luxury furniture in Nigeria. Explore dining sets, living room sofas, bedroom furniture, coffee tables and décor. Crafted to last, made to be loved.',
+    keywords:
+      'luxury furniture Nigeria, buy furniture Lagos, dining table Nigeria, sofa Nigeria, bedroom furniture, marble coffee table, walnut dining set, bouclé sofa, BRICKS furniture',
+    canonical: '/',
+    ogImage: 'https://www.thebrick.com.ng/images/dox26.jpeg',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'BRICKS Featured Furniture Collections',
+      description: 'Premium furniture collections curated for intentional living',
+      url: 'https://www.thebrick.com.ng/',
+      numberOfItems: 20,
+    },
+  });
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {

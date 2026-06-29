@@ -21,12 +21,27 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 import ProductCard from '../components/ProductCard';
 import { products, categories } from '../data/products';
+import { useSEO } from '../hooks/useSEO';
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+
+  const activeCategory = searchParams.get('category');
+  useSEO({
+    title: activeCategory
+      ? `${activeCategory} Furniture Nigeria — Shop Online | BRICKS`
+      : 'Shop All Luxury Furniture — Dining, Living Room, Bedroom | BRICKS Nigeria',
+    description: activeCategory
+      ? `Browse premium ${activeCategory.toLowerCase()} furniture in Nigeria. Shop the BRICKS ${activeCategory} collection — crafted for quality and intentional living.`
+      : 'Browse the full BRICKS furniture collection. Luxury dining sets, living room sofas, bedroom furniture, coffee tables, chandeliers and décor — shipped across Nigeria.',
+    keywords: activeCategory
+      ? `${activeCategory.toLowerCase()} furniture Nigeria, buy ${activeCategory.toLowerCase()} furniture, luxury ${activeCategory.toLowerCase()} Nigeria, BRICKS furniture`
+      : 'buy furniture Nigeria, luxury furniture store, dining furniture, sofa Nigeria, bedroom furniture Lagos, BRICKS furniture store',
+    canonical: activeCategory ? `/shop?category=${encodeURIComponent(activeCategory)}` : '/shop',
+  });
 
   const selectedCategory = searchParams.get('category') || '';
 

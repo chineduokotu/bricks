@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ═══════════════════════════════
+       STATIC PAGES
+  ═══════════════════════════════ -->
+
+  <url>
+    <loc>https://www.thebrick.com.ng/</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox26.jpeg</image:loc>
+      <image:title>BRICKS — Luxury Furniture for Intentional Living</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.thebrick.com.ng/shop</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thebrick.com.ng/gallery</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thebrick.com.ng/about</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thebrick.com.ng/contact</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ═══════════════════════════════
+       CATEGORY PAGES
+  ═══════════════════════════════ -->
+
+  <url>
+    <loc>https://www.thebrick.com.ng/shop?category=Living%20Room</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thebrick.com.ng/shop?category=Dining</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thebrick.com.ng/shop?category=Bedroom</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thebrick.com.ng/shop?category=Decor</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thebrick.com.ng/shop?category=Workspace</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thebrick.com.ng/shop?category=Lighting</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ═══════════════════════════════
+       PRODUCT PAGES
+  ═══════════════════════════════ -->
+
+  <!-- Product 1: Obasi Walnut Dining Table Set -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/1</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox11.jpeg</image:loc>
+      <image:title>Obasi Walnut Dining Table Set — BRICKS Furniture</image:title>
+      <image:caption>Solid walnut tabletop with tapered legs and bouclé chairs</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 2: Ade Black Slate Dining Set -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/2</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox15.jpeg</image:loc>
+      <image:title>Ade Black Slate Dining Set — BRICKS Furniture</image:title>
+      <image:caption>Matte black sintered stone tabletop with sculptural white tulip chairs</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 3: Ekene Grey L-Shape Sectional -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/3</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox18.jpeg</image:loc>
+      <image:title>Ekene Grey L-Shape Sectional — BRICKS Furniture</image:title>
+      <image:caption>Grid-tufted deep charcoal grey modular sectional sofa</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 4: Chukwu Marble Dining Table -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/4</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox21.jpeg</image:loc>
+      <image:title>Chukwu Marble Dining Table — BRICKS Furniture</image:title>
+      <image:caption>Calacatta marble slab dining table with grey leatherette chairs</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 5: Emeka Living Room Set -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/5</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox25.jpeg</image:loc>
+      <image:title>Emeka Living Room Set — BRICKS Furniture</image:title>
+      <image:caption>Beige bouclé sofa with marble and gold coffee table</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 6: Royale White & Gold Dining Set -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/6</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox26.jpeg</image:loc>
+      <image:title>Royale White &amp; Gold Dining Set — BRICKS Furniture</image:title>
+      <image:caption>White lacquer dining table with velvet button-tufted chairs on gold legs</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 7: Nnamdi Modular Sectional -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/7</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox30.jpeg</image:loc>
+      <image:title>Nnamdi Modular Sectional — BRICKS Furniture</image:title>
+      <image:caption>Expansive U-shape mid-grey modular sectional with stone-top coffee table</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 8: Ife Marble & Gold Coffee Table -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/8</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox33.jpeg</image:loc>
+      <image:title>Ife Marble &amp; Gold Coffee Table — BRICKS Furniture</image:title>
+      <image:caption>Calacatta marble top on gold-plated steel chain link frame</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 9: Amara Ivory Linen Sofa -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/9</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox37.jpeg</image:loc>
+      <image:title>Amara Ivory Linen Sofa — BRICKS Furniture</image:title>
+      <image:caption>Pure ivory linen sofa with terracotta and slate cushions</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 10: Ife Coffee Table Grand -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/10</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox40.jpeg</image:loc>
+      <image:title>Ife Coffee Table Grand — BRICKS Furniture</image:title>
+      <image:caption>Large-format Calacatta marble and gold coffee table</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 11: Bespoke Royal Tufted Bed Frame -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/11</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox43.jpeg</image:loc>
+      <image:title>Bespoke Royal Tufted Bed Frame — BRICKS Furniture</image:title>
+      <image:caption>Wingback bed in cream velvet with champagne gold trim</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 12: Luxe Leather Lounge Armchair -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/12</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox48.jpeg</image:loc>
+      <image:title>Luxe Leather Lounge Armchair — BRICKS Furniture</image:title>
+      <image:caption>Mid-century tan aniline leather lounge chair on black walnut legs</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 13: Modernist Marble Console Table -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/13</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox50.jpeg</image:loc>
+      <image:title>Modernist Marble Console Table — BRICKS Furniture</image:title>
+      <image:caption>Calacatta marble console table on brushed gold steel frame</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 14: Imperial Royale Velvet Sofa -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/14</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/dox53.jpeg</image:loc>
+      <image:title>Imperial Royale Velvet Sofa — BRICKS Furniture</image:title>
+      <image:caption>Emerald green velvet sofa with handcrafted gold leaf accent panels</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 15: Lagos Teak Outdoor Sofa -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/15</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/doxa15.jpeg</image:loc>
+      <image:title>Lagos Teak Outdoor Sofa — BRICKS Furniture</image:title>
+      <image:caption>Premium Grade-A teak outdoor sofa with white canvas cushions</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 16: Artisanal Brass Coffee Table Set -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/16</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/doxa16.jpeg</image:loc>
+      <image:title>Artisanal Brass Coffee Table Set — BRICKS Furniture</image:title>
+      <image:caption>Hammered antiqued brass nesting coffee tables on matte black frames</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 17: Minimalist Walnut Master Wardrobe -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/17</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/doxa17.jpeg</image:loc>
+      <image:title>Minimalist Walnut Master Wardrobe — BRICKS Furniture</image:title>
+      <image:caption>Three-section walnut wardrobe with LED lighting and velvet-lined drawers</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 18: Zen Black Lacquer Dining Set -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/18</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/doxa18.jpeg</image:loc>
+      <image:title>Zen Black Lacquer Dining Set — BRICKS Furniture</image:title>
+      <image:caption>Black piano lacquer dining table with off-white linen chairs</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 19: Amaka Woolen Tufted Rug -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/19</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/doxa19.jpeg</image:loc>
+      <image:title>Amaka Woolen Tufted Rug — BRICKS Furniture</image:title>
+      <image:caption>Hand-tufted 100% New Zealand wool rug in sand and charcoal</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Product 20: Royale Gold Crystal Chandelier -->
+  <url>
+    <loc>https://www.thebrick.com.ng/product/20</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.thebrick.com.ng/images/doxa20.jpeg</image:loc>
+      <image:title>Royale Gold Crystal Chandelier — BRICKS Furniture</image:title>
+      <image:caption>Multi-tier K9 crystal chandelier on 24k gold-plated steel frame</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

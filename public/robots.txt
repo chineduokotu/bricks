@@ -1,0 +1,31 @@
+# ═══════════════════════════════════════════════════════════
+# BRICKS Furniture — robots.txt
+# https://www.thebrick.com.ng/robots.txt
+
+# ═══════════════════════════════════════════════════════════
+
+# Allow all well-behaved crawlers
+User-agent: *
+Allow: /
+
+# Block crawling of non-content pages
+Disallow: /cart
+Disallow: /checkout
+Disallow: /api/
+Disallow: /*.json$
+
+# Allow Google to crawl images for image search
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /public/images/
+
+# Google AdsBot
+User-agent: AdsBot-Google
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.thebrick.com.ng/sitemap.xml
+
+
+# Crawl delay (be respectful)
+Crawl-delay: 1
