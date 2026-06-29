@@ -41,6 +41,7 @@ const WHATSAPP_NUMBER = '2349030181800';
 const desktopLinks = [
   { label: 'Home', path: '/' },
   { label: 'Shop', path: '/shop' },
+  { label: 'Gallery', path: '/gallery' },
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },
 ];
@@ -392,6 +393,7 @@ export default function Navbar() {
           {/* Secondary Links */}
           <List sx={{ px: 2 }}>
             {[
+              { label: 'Gallery', path: '/gallery' },
               { label: 'About', path: '/about' },
               { label: 'Contact', path: '/contact' },
               { label: 'Track Order' },

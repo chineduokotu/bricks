@@ -20,6 +20,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { useCart } from '../hooks/useCart';
 import { products } from '../data/products';
 
@@ -27,7 +28,7 @@ export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === Number(id));
   const { addItem, openDrawer } = useCart();
-  const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   if (!product) {
@@ -42,6 +43,11 @@ export default function ProductDetails() {
       </Container>
     );
   }
+
+  const media = [
+    ...product.images.map((url) => ({ type: 'image' as const, url })),
+    ...(product.videos || []).map((url) => ({ type: 'video' as const, url })),
+  ];
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
@@ -92,7 +98,7 @@ export default function ProductDetails() {
       </Button>
 
       <Grid container spacing={6}>
-        {/* Image Section */}
+        {/* Image/Video Media Section */}
         <Grid item xs={12} md={7}>
           <Box
             sx={{
@@ -101,37 +107,76 @@ export default function ProductDetails() {
               bgcolor: '#F5F5F5',
               mb: 2,
               overflow: 'hidden',
+              position: 'relative',
             }}
           >
-            <Box
-              component="img"
-              src={product.images[selectedImage]}
-              alt={product.name}
-              sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
+            {media[selectedMediaIndex]?.type === 'image' ? (
+              <Box
+                component="img"
+                src={media[selectedMediaIndex].url}
+                alt={product.name}
+                sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            ) : (
+              <video
+                src={media[selectedMediaIndex]?.url}
+                controls
+                autoPlay
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            )}
           </Box>
           <Grid container spacing={1.5}>
-            {product.images.map((img, index) => (
-              <Grid item xs={3} key={img}>
+            {media.map((item, index) => (
+              <Grid item xs={3} key={item.url}>
                 <Box
-                  component="img"
-                  src={img}
-                  alt={`${product.name} view ${index + 1}`}
-                  onClick={() => setSelectedImage(index)}
+                  onClick={() => setSelectedMediaIndex(index)}
                   sx={{
                     width: '100%',
                     height: { xs: 80, md: 120 },
-                    objectFit: 'cover',
+                    position: 'relative',
                     cursor: 'pointer',
                     border: '2px solid',
                     borderColor:
-                      selectedImage === index ? 'primary.main' : 'transparent',
+                      selectedMediaIndex === index ? 'primary.main' : 'transparent',
                     transition: 'border-color 0.2s ease',
+                    bgcolor: '#000000',
+                    overflow: 'hidden',
                     '&:hover': {
                       borderColor: 'primary.main',
                     },
                   }}
-                />
+                >
+                  {item.type === 'image' ? (
+                    <Box
+                      component="img"
+                      src={item.url}
+                      alt={`${product.name} view ${index + 1}`}
+                      sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
+                      <video
+                        src={item.url}
+                        muted
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6 }}
+                      />
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          inset: 0,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#FFFFFF',
+                          bgcolor: 'rgba(0,0,0,0.2)',
+                        }}
+                      >
+                        <PlayCircleOutlineIcon sx={{ fontSize: 28 }} />
+                      </Box>
+                    </Box>
+                  )}
+                </Box>
               </Grid>
             ))}
           </Grid>

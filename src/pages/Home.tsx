@@ -18,19 +18,19 @@ import { products, categories } from '../data/products';
 const base = '/images';
 
 const heroImages = [
-  `${base}/doxa19.jpeg`,
-  `${base}/doxa17.jpeg`,
-  `${base}/doxa18.jpeg`,
-  `${base}/ps8.jpg`,
+  `${base}/dox11.jpeg`,
+  `${base}/dox18.jpeg`,
+  `${base}/dox26.jpeg`,
+  `${base}/dox43.jpeg`,
 ];
 
 const categoryImages: Record<string, string> = {
-  'Living Room': `${base}/dox3.jpeg`,
-  'Bedroom': `${base}/ps6.jpg`,
-  'Workspace': `${base}/ps14.jpg`,
-  'Dining': `${base}/ps4.jpg`,
-  'Lighting': `${base}/us4.jpg`,
-  'Decor': `${base}/ps7.jpg`,
+  'Living Room': `${base}/dox18.jpeg`,
+  'Bedroom': `${base}/dox43.jpeg`,
+  'Workspace': `${base}/doxa17.jpeg`,
+  'Dining': `${base}/dox11.jpeg`,
+  'Lighting': `${base}/doxa20.jpeg`,
+  'Decor': `${base}/doxa19.jpeg`,
 };
 
 const bestSellers = products.filter((p) => p.id <= 8);
