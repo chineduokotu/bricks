@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
-import { keyframes } from '@mui/material/styles';
+import { useState, useEffect } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { useSEO } from "../hooks/useSEO";
+import { keyframes } from "@mui/material/styles";
 import {
   Box,
   Container,
@@ -11,27 +11,27 @@ import {
   Card,
   CardMedia,
   CardContent,
-} from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProductCard from '../components/ProductCard';
-import { products, categories } from '../data/products';
+} from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ProductCard from "../components/ProductCard";
+import { products, categories } from "../data/products";
 
-const base = '/images';
+const base = "/images";
 
 const heroImages = [
-  `${base}/dox11.jpeg`,
-  `${base}/dox18.jpeg`,
-  `${base}/dox26.jpeg`,
+  `${base}/dox19.jpeg`,
+  `${base}/dox13.jpeg`,
+  `${base}/brick.jpeg`,
   `${base}/dox43.jpeg`,
 ];
 
 const categoryImages: Record<string, string> = {
-  'Living Room': `${base}/dox18.jpeg`,
-  'Bedroom': `${base}/dox43.jpeg`,
-  'Workspace': `${base}/doxa17.jpeg`,
-  'Dining': `${base}/dox11.jpeg`,
-  'Lighting': `${base}/doxa20.jpeg`,
-  'Decor': `${base}/doxa19.jpeg`,
+  "Living Room": `${base}/dox18.jpeg`,
+  Bedroom: `${base}/dox43.jpeg`,
+  Workspace: `${base}/doxa17.jpeg`,
+  Dining: `${base}/dox11.jpeg`,
+  Lighting: `${base}/doxa20.jpeg`,
+  Decor: `${base}/doxa19.jpeg`,
 };
 
 const bestSellers = products.filter((p) => p.id <= 8);
@@ -43,19 +43,20 @@ const zoomIn = keyframes`
 
 export default function Home() {
   useSEO({
-    title: 'BRICKS — Luxury Furniture for Intentional Living | Nigeria',
+    title: "BRICKS — Luxury Furniture for Intentional Living | Nigeria",
     description:
-      'Shop premium luxury furniture in Nigeria. Explore dining sets, living room sofas, bedroom furniture, coffee tables and décor. Crafted to last, made to be loved.',
+      "Shop premium luxury furniture in Nigeria. Explore dining sets, living room sofas, bedroom furniture, coffee tables and décor. Crafted to last, made to be loved.",
     keywords:
-      'luxury furniture Nigeria, buy furniture Lagos, dining table Nigeria, sofa Nigeria, bedroom furniture, marble coffee table, walnut dining set, bouclé sofa, BRICKS furniture',
-    canonical: '/',
-    ogImage: 'https://www.thebrick.com.ng/images/dox26.jpeg',
+      "luxury furniture Nigeria, buy furniture Lagos, dining table Nigeria, sofa Nigeria, bedroom furniture, marble coffee table, walnut dining set, bouclé sofa, BRICKS furniture",
+    canonical: "/",
+    ogImage: "https://www.thebrick.com.ng/images/dox26.jpeg",
     structuredData: {
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      name: 'BRICKS Featured Furniture Collections',
-      description: 'Premium furniture collections curated for intentional living',
-      url: 'https://www.thebrick.com.ng/',
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "BRICKS Featured Furniture Collections",
+      description:
+        "Premium furniture collections curated for intentional living",
+      url: "https://www.thebrick.com.ng/",
       numberOfItems: 20,
     },
   });
@@ -74,14 +75,14 @@ export default function Home() {
       {/* Hero Section */}
       <Box
         sx={{
-          position: 'relative',
-          minHeight: { xs: '70vh', md: '90vh' },
-          display: 'flex',
-          alignItems: 'center',
-          borderBottom: '1px solid',
-          borderColor: 'divider',
-          overflow: 'hidden',
-          mt: { xs: '-64px', md: '-72px' },
+          position: "relative",
+          minHeight: { xs: "70vh", md: "90vh" },
+          display: "flex",
+          alignItems: "center",
+          borderBottom: "1px solid",
+          borderColor: "divider",
+          overflow: "hidden",
+          mt: { xs: "-64px", md: "-72px" },
         }}
       >
         {heroImages.map((src, index) => (
@@ -91,49 +92,50 @@ export default function Home() {
             src={src}
             alt={`Hero furniture ${index + 1}`}
             sx={{
-              position: 'absolute',
+              position: "absolute",
               inset: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
               opacity: index === activeIndex ? 1 : 0,
-              transform: 'scale(1)',
-              transition: 'opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              animation: index === activeIndex ? `${zoomIn} 5s ease-in-out` : 'none',
+              transform: "scale(1)",
+              transition: "opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              animation:
+                index === activeIndex ? `${zoomIn} 5s ease-in-out` : "none",
             }}
           />
         ))}
         <Box
           sx={{
-            position: 'absolute',
+            position: "absolute",
             inset: 0,
-            bgcolor: 'rgba(0, 0, 0, 0.4)',
+            bgcolor: "rgba(0, 0, 0, 0.4)",
           }}
         />
         <Box
           sx={{
-            position: 'relative',
+            position: "relative",
             zIndex: 1,
             px: { xs: 2, md: 8 },
             py: { xs: 6, md: 0 },
-            pt: { xs: '64px', md: '72px' },
+            pt: { xs: "64px", md: "72px" },
             maxWidth: 680,
           }}
         >
           <Typography
             variant="h1"
             component="h1"
-            sx={{ mb: 3, color: '#FFFFFF', fontWeight: 600 }}
+            sx={{ mb: 3, color: "#FFFFFF", fontWeight: 600 }}
           >
-            Furniture for{' '}
+            Furniture for{" "}
             <Box
               component="span"
               sx={{
                 fontFamily: '"Playfair Display", serif',
-                fontStyle: 'italic',
+                fontStyle: "italic",
                 fontWeight: 700,
-                display: 'block',
-                color: '#FFFFFF',
+                display: "block",
+                color: "#FFFFFF",
               }}
             >
               intentional living
@@ -142,10 +144,10 @@ export default function Home() {
           <Typography
             variant="body1"
             sx={{
-              color: 'rgba(255, 255, 255, 0.85)',
+              color: "rgba(255, 255, 255, 0.85)",
               mb: 5,
               maxWidth: 440,
-              fontSize: '1.125rem',
+              fontSize: "1.125rem",
               lineHeight: 1.7,
               fontWeight: 500,
             }}
@@ -161,13 +163,13 @@ export default function Home() {
             endIcon={<ArrowForwardIcon />}
             sx={{
               borderRadius: 0,
-              bgcolor: '#FFFFFF',
-              color: '#1A1A1A',
-              letterSpacing: '0.1em',
+              bgcolor: "#FFFFFF",
+              color: "#1A1A1A",
+              letterSpacing: "0.1em",
               fontWeight: 700,
               px: { xs: 3, md: 5 },
               py: 1.5,
-              '&:hover': { bgcolor: '#f0f0f0' },
+              "&:hover": { bgcolor: "#f0f0f0" },
             }}
           >
             Explore Collection
@@ -181,22 +183,22 @@ export default function Home() {
           <Typography
             variant="h3"
             component="h2"
-            sx={{ mb: 2, textAlign: 'center' }}
+            sx={{ mb: 2, textAlign: "center" }}
           >
             Featured Collections
           </Typography>
           <Typography
             variant="body1"
             sx={{
-              color: 'text.secondary',
-              textAlign: 'center',
+              color: "text.secondary",
+              textAlign: "center",
               mb: 6,
               maxWidth: 500,
-              mx: 'auto',
+              mx: "auto",
             }}
           >
-            Explore our thoughtfully curated categories, each designed to inspire
-            a more intentional home.
+            Explore our thoughtfully curated categories, each designed to
+            inspire a more intentional home.
           </Typography>
           <Grid container spacing={3}>
             {categories.slice(0, 6).map((cat) => (
@@ -205,17 +207,17 @@ export default function Home() {
                   component={RouterLink}
                   to={`/shop?category=${cat}`}
                   sx={{
-                    position: 'relative',
+                    position: "relative",
                     height: { xs: 200, md: 320 },
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    overflow: 'hidden',
-                    '&:hover .category-image': {
-                      transform: 'scale(1.05)',
+                    textDecoration: "none",
+                    color: "inherit",
+                    border: "1px solid",
+                    borderColor: "divider",
+                    overflow: "hidden",
+                    "&:hover .category-image": {
+                      transform: "scale(1.05)",
                     },
-                    '&:hover .category-overlay': {
+                    "&:hover .category-overlay": {
                       opacity: 0.3,
                     },
                   }}
@@ -227,33 +229,35 @@ export default function Home() {
                     image={categoryImages[cat]}
                     alt={cat}
                     sx={{
-                      objectFit: 'cover',
-                      transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      objectFit: "cover",
+                      transition:
+                        "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                     }}
                   />
                   <Box
                     className="category-overlay"
                     sx={{
-                      position: 'absolute',
+                      position: "absolute",
                       inset: 0,
-                      bgcolor: '#000',
+                      bgcolor: "#000",
                       opacity: 0.15,
-                      transition: 'opacity 0.4s ease',
+                      transition: "opacity 0.4s ease",
                     }}
                   />
                   <CardContent
                     sx={{
-                      position: 'absolute',
+                      position: "absolute",
                       bottom: 0,
                       left: 0,
                       right: 0,
                       p: 3,
-                      background: 'linear-gradient(transparent, rgba(0,0,0,0.6))',
+                      background:
+                        "linear-gradient(transparent, rgba(0,0,0,0.6))",
                     }}
                   >
                     <Typography
                       variant="h5"
-                      sx={{ color: '#FFFFFF', fontWeight: 400 }}
+                      sx={{ color: "#FFFFFF", fontWeight: 400 }}
                     >
                       {cat}
                     </Typography>
@@ -266,13 +270,13 @@ export default function Home() {
       </Box>
 
       {/* Best Sellers */}
-      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.paper' }}>
+      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "background.paper" }}>
         <Container maxWidth="xl">
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-end',
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
               mb: 6,
             }}
           >
@@ -280,7 +284,10 @@ export default function Home() {
               <Typography variant="h3" component="h2" sx={{ mb: 1 }}>
                 Best Selling Pieces
               </Typography>
-              <Typography variant="body1" sx={{ color: 'text.secondary', maxWidth: 400 }}>
+              <Typography
+                variant="body1"
+                sx={{ color: "text.secondary", maxWidth: 400 }}
+              >
                 Our most beloved pieces, chosen by customers who value quality
                 and enduring design.
               </Typography>
@@ -290,7 +297,7 @@ export default function Home() {
               to="/shop"
               variant="outlined"
               endIcon={<ArrowForwardIcon />}
-              sx={{ display: { xs: 'none', md: 'flex' } }}
+              sx={{ display: { xs: "none", md: "flex" } }}
             >
               View All
             </Button>
