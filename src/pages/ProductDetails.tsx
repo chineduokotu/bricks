@@ -46,7 +46,7 @@ export default function ProductDetails() {
     canonical: product ? `/product/${product.id}` : '/shop',
     ogImage: product
       ? `https://www.thebrick.com.ng${product.images[0]}`
-      : 'https://www.thebrick.com.ng/images/dox26.jpeg',
+      : 'https://www.thebrick.com.ng/images/doxa26.jpeg',
     ogType: 'product',
     structuredData: product
       ? {

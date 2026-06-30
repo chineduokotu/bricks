@@ -9,6 +9,11 @@ export interface GalleryItem {
 
 const categories = ['Living Room', 'Bedroom', 'Dining', 'Workspace', 'Lighting', 'Decor'] as const;
 
+const getUpdatedImage = (index: number) => {
+  const upgradedIndexes = new Set([11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]);
+  return `/images/${upgradedIndexes.has(index) ? `doxa${index}` : `dox${index}`}.jpeg`;
+};
+
 // Helper to generate image items
 const images: GalleryItem[] = Array.from({ length: 43 }, (_, i) => {
   const index = i + 11; // dox11 to dox53
@@ -43,7 +48,7 @@ const images: GalleryItem[] = Array.from({ length: 43 }, (_, i) => {
     title,
     category,
     mediaType: "image",
-    url: `/images/dox${index}.jpeg`,
+    url: getUpdatedImage(index),
     description
   };
 });

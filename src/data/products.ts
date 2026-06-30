@@ -2,13 +2,18 @@ import type { Product } from '../types';
 
 const base = '/images';
 
+const getUpdatedImage = (index: number) => {
+  const upgradedIndexes = new Set([11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]);
+  return `${base}/${upgradedIndexes.has(index) ? `doxa${index}` : `dox${index}`}.jpeg`;
+};
+
 export const products: Product[] = [
   {
     id: 1,
     name: 'Obasi Walnut Dining Table Set',
     price: 1850000,
     description: 'The Obasi dining set is a masterclass in understated luxury. A beautifully grained solid walnut tabletop sits on tapered wooden legs, surrounded by cloud-soft cream bouclé chairs that invite long, leisurely meals.',
-    images: [`${base}/dox11.jpeg`, `${base}/dox12.jpeg`, `${base}/dox13.jpeg`, `${base}/dox14.jpeg`],
+    images: [getUpdatedImage(11), getUpdatedImage(12), getUpdatedImage(13), getUpdatedImage(14)],
     category: 'Dining',
     dimensions: '200cm × 100cm × 76cm',
     material: 'Solid Walnut, Bouclé Fabric',
@@ -21,7 +26,7 @@ export const products: Product[] = [
     name: 'Ade Black Slate Dining Set',
     price: 1450000,
     description: 'Bold, dramatic and distinctly modern — the Ade dining set pairs a matte black sintered stone tabletop with sculptural white tulip chairs. The perfect statement for a contemporary home.',
-    images: [`${base}/dox15.jpeg`, `${base}/dox16.jpeg`, `${base}/dox17.jpeg`],
+    images: [getUpdatedImage(15), getUpdatedImage(16), getUpdatedImage(17)],
     category: 'Dining',
     dimensions: '160cm × 90cm × 75cm',
     material: 'Sintered Stone, Steel',
@@ -34,7 +39,7 @@ export const products: Product[] = [
     name: 'Ekene Grey L-Shape Sectional',
     price: 2250000,
     description: 'Generous, grid-tufted and supremely comfortable, the Ekene sectional redefines the living room as a destination. Available in deep charcoal grey with matching cushions and modular chaise extension.',
-    images: [`${base}/dox18.jpeg`, `${base}/dox19.jpeg`, `${base}/dox20.jpeg`],
+    images: [getUpdatedImage(18), getUpdatedImage(19), getUpdatedImage(20)],
     videos: [`${base}/dox_video1.mp4`],
     category: 'Living Room',
     dimensions: '320cm × 220cm × 85cm',
@@ -48,7 +53,7 @@ export const products: Product[] = [
     name: 'Chukwu Marble Dining Table',
     price: 2100000,
     description: 'A single slab of Calacatta marble makes every dinner feel like a special occasion. The Chukwu table is paired with sleek grey leatherette dining chairs on matte black legs — effortlessly refined.',
-    images: [`${base}/dox21.jpeg`, `${base}/dox22.jpeg`, `${base}/dox23.jpeg`, `${base}/dox24.jpeg`],
+    images: [getUpdatedImage(21), getUpdatedImage(22), getUpdatedImage(23), getUpdatedImage(24)],
     category: 'Dining',
     dimensions: '220cm × 105cm × 76cm',
     material: 'Calacatta Marble, Leatherette',
@@ -61,7 +66,7 @@ export const products: Product[] = [
     name: 'Emeka Living Room Set',
     price: 1950000,
     description: 'The Emeka set is warmth embodied. A generous beige boucle sofa with rolling back pillows, paired with a marble and gold coffee table that adds a glamorous focal point to any living room.',
-    images: [`${base}/dox25.jpeg`],
+    images: [getUpdatedImage(25)],
     videos: [`${base}/dox_video2.mp4`, `${base}/dox_video3.mp4`],
     category: 'Living Room',
     dimensions: 'Sofa: 240cm × 100cm × 80cm',
@@ -75,7 +80,7 @@ export const products: Product[] = [
     name: 'Royale White & Gold Dining Set',
     price: 2800000,
     description: 'Our most opulent dining collection. A gleaming white lacquer tabletop with champagne gold edge detailing, surrounded by button-tufted velvet dining chairs on brushed gold legs. A set worthy of royalty.',
-    images: [`${base}/dox26.jpeg`, `${base}/dox27.jpeg`, `${base}/dox28.jpeg`, `${base}/dox29.jpeg`],
+    images: [getUpdatedImage(26), getUpdatedImage(27), getUpdatedImage(28), getUpdatedImage(29)],
     videos: [`${base}/dox_video4.mp4`],
     category: 'Dining',
     dimensions: '220cm × 110cm × 78cm',
@@ -89,7 +94,7 @@ export const products: Product[] = [
     name: 'Nnamdi Modular Sectional',
     price: 2650000,
     description: 'Expansive, modular and designed for extended families. The Nnamdi sectional wraps around the room in rich mid-grey, with a built-in side console and stone-top round coffee table included.',
-    images: [`${base}/dox30.jpeg`, `${base}/dox31.jpeg`, `${base}/dox32.jpeg`],
+    images: [getUpdatedImage(30), getUpdatedImage(31), getUpdatedImage(32)],
     category: 'Living Room',
     dimensions: '420cm × 300cm (U-shape)',
     material: 'Premium Fabric, Stone, Steel',

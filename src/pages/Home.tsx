@@ -19,22 +19,40 @@ import { products, categories } from "../data/products";
 const base = "/images";
 
 const heroImages = [
-  `${base}/dox19.jpeg`,
-  `${base}/dox13.jpeg`,
+  `${base}/doxa32.jpeg`,
+  `${base}/doxa13.jpeg`,
   `${base}/brick.jpeg`,
-  `${base}/dox43.jpeg`,
+  `${base}/doxa19.jpeg`,
 ];
 
 const categoryImages: Record<string, string> = {
-  "Living Room": `${base}/dox18.jpeg`,
-  Bedroom: `${base}/dox43.jpeg`,
+  "Living Room": `${base}/doxa18.jpeg`,
+  Bedroom: `${base}/doxa11.jpeg`,
   Workspace: `${base}/doxa17.jpeg`,
-  Dining: `${base}/dox11.jpeg`,
+  Dining: `${base}/doxa11.jpeg`,
   Lighting: `${base}/doxa20.jpeg`,
   Decor: `${base}/doxa19.jpeg`,
 };
 
 const bestSellers = products.filter((p) => p.id <= 8);
+
+const homeVideos = [
+  {
+    src: `${base}/WhatsApp Video 2026-06-30 at 23.03.23.mp4`,
+    title: 'Signature Dining Showcase',
+    description: 'A cinematic look at our sculptural dining collections and the detail behind every finish.',
+  },
+  {
+    src: `${base}/WhatsApp Video 2026-06-30 at 23.03.26.mp4`,
+    title: 'Luxury Living Room Moments',
+    description: 'See how our upholstered pieces bring softness, depth, and comfort to modern homes.',
+  },
+  {
+    src: `${base}/WhatsApp Video 2026-06-30 at 23.03.28.mp4`,
+    title: 'Crafted Comfort in Motion',
+    description: 'Watch the textures, proportions, and atmosphere that define the BRICKS experience.',
+  },
+];
 
 const zoomIn = keyframes`
   from { transform: scale(1); }
@@ -49,7 +67,7 @@ export default function Home() {
     keywords:
       "luxury furniture Nigeria, buy furniture Lagos, dining table Nigeria, sofa Nigeria, bedroom furniture, marble coffee table, walnut dining set, bouclé sofa, BRICKS furniture",
     canonical: "/",
-    ogImage: "https://www.thebrick.com.ng/images/dox26.jpeg",
+    ogImage: "https://www.thebrick.com.ng/images/doxa26.jpeg",
     structuredData: {
       "@context": "https://schema.org",
       "@type": "ItemList",
@@ -260,6 +278,51 @@ export default function Home() {
                       sx={{ color: "#FFFFFF", fontWeight: 400 }}
                     >
                       {cat}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Video Showcase */}
+      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "background.default" }}>
+        <Container maxWidth="xl">
+          <Box sx={{ textAlign: "center", mb: 6 }}>
+            <Typography variant="h3" component="h2" sx={{ mb: 1 }}>
+              Crafted in Motion
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ color: "text.secondary", maxWidth: 620, mx: "auto" }}
+            >
+              Scroll through a closer look at our signature pieces, crafted to feel as striking in motion as they do in still life.
+            </Typography>
+          </Box>
+          <Grid container spacing={3}>
+            {homeVideos.map((video) => (
+              <Grid item xs={12} md={4} key={video.src}>
+                <Card sx={{ overflow: "hidden", border: "1px solid", borderColor: "divider" }}>
+                  <Box sx={{ position: "relative", aspectRatio: "16 / 9", bgcolor: "#000000" }}>
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    >
+                      <source src={video.src} type="video/mp4" />
+                    </video>
+                  </Box>
+                  <CardContent sx={{ p: 3 }}>
+                    <Typography variant="h6" sx={{ mb: 1 }}>
+                      {video.title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.7 }}>
+                      {video.description}
                     </Typography>
                   </CardContent>
                 </Card>

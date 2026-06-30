@@ -39,7 +39,7 @@ export default function GalleryPage() {
     keywords:
       'furniture gallery Nigeria, luxury furniture photos, BRICKS furniture gallery, interior design Nigeria, dining set photos, living room sofa Nigeria',
     canonical: '/gallery',
-    ogImage: 'https://www.thebrick.com.ng/images/dox26.jpeg',
+    ogImage: 'https://www.thebrick.com.ng/images/doxa26.jpeg',
   });
 
   const [activeCategory, setActiveCategory] = useState<string>('all');

@@ -11,7 +11,7 @@ interface SEOProps {
 }
 
 const BASE_URL = 'https://www.thebrick.com.ng';
-const DEFAULT_IMAGE = `${BASE_URL}/images/dox26.jpeg`;
+const DEFAULT_IMAGE = `${BASE_URL}/images/doxa26.jpeg`;
 
 
 /**
