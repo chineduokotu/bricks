@@ -8,8 +8,8 @@ interface CartState {
 
 type CartAction =
   | { type: 'ADD_ITEM'; product: Product }
-  | { type: 'REMOVE_ITEM'; productId: number }
-  | { type: 'UPDATE_QUANTITY'; productId: number; quantity: number }
+  | { type: 'REMOVE_ITEM'; productId: string | number }
+  | { type: 'UPDATE_QUANTITY'; productId: string | number; quantity: number }
   | { type: 'CLEAR_CART' }
   | { type: 'TOGGLE_DRAWER' };
 
@@ -19,8 +19,8 @@ interface CartContextValue {
   totalItems: number;
   totalPrice: number;
   addItem: (product: Product) => void;
-  removeItem: (productId: number) => void;
-  updateQuantity: (productId: number, quantity: number) => void;
+  removeItem: (productId: string | number) => void;
+  updateQuantity: (productId: string | number, quantity: number) => void;
   clearCart: () => void;
   toggleDrawer: () => void;
   openDrawer: () => void;
@@ -104,11 +104,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     dispatch({ type: 'ADD_ITEM', product });
   }, []);
 
-  const removeItem = useCallback((productId: number) => {
+  const removeItem = useCallback((productId: string | number) => {
     dispatch({ type: 'REMOVE_ITEM', productId });
   }, []);
 
-  const updateQuantity = useCallback((productId: number, quantity: number) => {
+  const updateQuantity = useCallback((productId: string | number, quantity: number) => {
     dispatch({ type: 'UPDATE_QUANTITY', productId, quantity });
   }, []);
 

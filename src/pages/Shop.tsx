@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
   Box,
@@ -20,7 +20,8 @@ import {
 import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 import ProductCard from '../components/ProductCard';
-import { products, categories } from '../data/products';
+import { categories } from '../data/products';
+import { useProducts } from '../hooks/useProducts';
 import { useSEO } from '../hooks/useSEO';
 
 export default function Shop() {
@@ -45,6 +46,8 @@ export default function Shop() {
 
   const selectedCategory = searchParams.get('category') || '';
 
+  const { products } = useProducts();
+
   const updateParams = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams);
     if (value) {
@@ -65,7 +68,7 @@ export default function Shop() {
     result.sort((a, b) => b.reviews - a.reviews);
 
     return result;
-  }, [selectedCategory]);
+  }, [products, selectedCategory]);
 
   const filters = (
     <Box sx={{ p: isMobile ? 2 : 0 }}>
@@ -136,6 +139,8 @@ export default function Shop() {
           </Button>
         )}
       </Box>
+
+
 
       {/* Active Filters */}
       {selectedCategory && (

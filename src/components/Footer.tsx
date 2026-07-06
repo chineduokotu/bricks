@@ -14,7 +14,7 @@ import logo from '../assets/logo.png';
 const footerSections = [
   {
     title: 'Shop',
-    links: ['Living Room', 'Bedroom', 'Workspace', 'Dining', 'Lighting', 'Decor'],
+    links: ['Living Room', 'Bedroom', 'Office', 'Dining', 'Lighting', 'Decor'],
   },
   {
     title: 'About',

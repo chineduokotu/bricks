@@ -26,7 +26,7 @@ const CATEGORIES = [
   { label: 'Living Room', slug: 'Living Room' },
   { label: 'Dining', slug: 'Dining' },
   { label: 'Bedroom', slug: 'Bedroom' },
-  { label: 'Workspace', slug: 'Workspace' },
+  { label: 'Office', slug: 'Office' },
   { label: 'Lighting', slug: 'Lighting' },
   { label: 'Decor', slug: 'Decor' },
 ];
@@ -99,6 +99,8 @@ export default function GalleryPage() {
             Browse through our cinematic videos and high-definition photography of bespoke luxury furniture, conceptualized for refined spaces in Benin City and Lagos.
           </Typography>
         </Box>
+
+
 
         {/* Filters Control Panel */}
         <Box

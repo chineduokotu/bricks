@@ -46,7 +46,7 @@ const desktopLinks = [
   { label: 'Contact', path: '/contact' },
 ];
 
-const shopCategories = ['Living Room', 'Bedroom', 'Dining', 'Office', 'Accessories'];
+import { categories as shopCategories } from '../data/products';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);

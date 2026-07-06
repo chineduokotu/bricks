@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, Link as RouterLink } from 'react-router-dom';
+import { useProducts } from '../hooks/useProducts';
 import {
   Box,
   Container,
@@ -22,12 +23,12 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { useCart } from '../hooks/useCart';
-import { products } from '../data/products';
 import { useSEO } from '../hooks/useSEO';
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
-  const product = products.find((p) => p.id === Number(id));
+  const { products } = useProducts();
+  const product = products.find((p) => String(p.id) === id);
   const { addItem, openDrawer } = useCart();
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -86,7 +87,7 @@ export default function ProductDetails() {
     return (
       <Container maxWidth="xl" sx={{ py: 12, textAlign: 'center' }}>
         <Typography variant="h4" sx={{ mb: 2 }}>
-          Product Not Found
+          {isLoading ? 'Loading Product...' : 'Product Not Found'}
         </Typography>
         <Button component={RouterLink} to="/shop" variant="outlined">
           Back to Shop
