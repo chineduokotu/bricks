@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useParams, Link as RouterLink } from 'react-router-dom';
-import { useProducts } from '../hooks/useProducts';
+import { useState } from "react";
+import { useParams, Link as RouterLink } from "react-router-dom";
+import { useProducts } from "../hooks/useProducts";
 import {
   Box,
   Container,
@@ -16,18 +16,18 @@ import {
   Breadcrumbs,
   Link,
   Chip,
-} from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import { useCart } from '../hooks/useCart';
-import { useSEO } from '../hooks/useSEO';
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import { useCart } from "../hooks/useCart";
+import { useSEO } from "../hooks/useSEO";
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
-  const { products } = useProducts();
+  const { products, isLoading } = useProducts();
   const product = products.find((p) => String(p.id) === id);
   const { addItem, openDrawer } = useCart();
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
@@ -37,42 +37,42 @@ export default function ProductDetails() {
   useSEO({
     title: product
       ? `${product.name} — Buy Online | BRICKS Furniture`
-      : 'Product Not Found | BRICKS Furniture',
+      : "Product Not Found | BRICKS Furniture",
     description: product
       ? `${product.description} Shop the ${product.name} at BRICKS Furniture Nigeria. ${product.material}. Dimensions: ${product.dimensions}.`
-      : 'This product could not be found. Explore our full furniture collection.',
+      : "This product could not be found. Explore our full furniture collection.",
     keywords: product
       ? `${product.name}, ${product.category} Nigeria, ${product.material}, buy ${product.category.toLowerCase()} furniture Nigeria, BRICKS furniture`
-      : '',
-    canonical: product ? `/product/${product.id}` : '/shop',
+      : "",
+    canonical: product ? `/product/${product.id}` : "/shop",
     ogImage: product
       ? `https://www.thebrick.com.ng${product.images[0]}`
-      : 'https://www.thebrick.com.ng/images/doxa26.jpeg',
-    ogType: 'product',
+      : "https://www.thebrick.com.ng/images/doxa26.jpeg",
+    ogType: "product",
     structuredData: product
       ? {
-          '@context': 'https://schema.org',
-          '@type': 'Product',
+          "@context": "https://schema.org",
+          "@type": "Product",
           name: product.name,
           description: product.description,
           image: product.images.map(
-            (img) => `https://www.thebrick.com.ng${img}`
+            (img) => `https://www.thebrick.com.ng${img}`,
           ),
           sku: `BRICKS-${product.id}`,
-          brand: { '@type': 'Brand', name: 'BRICKS Furniture' },
+          brand: { "@type": "Brand", name: "BRICKS Furniture" },
           material: product.material,
           offers: {
-            '@type': 'Offer',
+            "@type": "Offer",
             url: `https://www.thebrick.com.ng/product/${product.id}`,
-            priceCurrency: 'NGN',
+            priceCurrency: "NGN",
             price: product.price,
             availability: product.inStock
-              ? 'https://schema.org/InStock'
-              : 'https://schema.org/OutOfStock',
-            seller: { '@type': 'Organization', name: 'BRICKS Furniture' },
+              ? "https://schema.org/InStock"
+              : "https://schema.org/OutOfStock",
+            seller: { "@type": "Organization", name: "BRICKS Furniture" },
           },
           aggregateRating: {
-            '@type': 'AggregateRating',
+            "@type": "AggregateRating",
             ratingValue: product.rating,
             reviewCount: product.reviews,
             bestRating: 5,
@@ -85,9 +85,9 @@ export default function ProductDetails() {
 
   if (!product) {
     return (
-      <Container maxWidth="xl" sx={{ py: 12, textAlign: 'center' }}>
+      <Container maxWidth="xl" sx={{ py: 12, textAlign: "center" }}>
         <Typography variant="h4" sx={{ mb: 2 }}>
-          {isLoading ? 'Loading Product...' : 'Product Not Found'}
+          {isLoading ? "Loading Product..." : "Product Not Found"}
         </Typography>
         <Button component={RouterLink} to="/shop" variant="outlined">
           Back to Shop
@@ -97,8 +97,8 @@ export default function ProductDetails() {
   }
 
   const media = [
-    ...product.images.map((url) => ({ type: 'image' as const, url })),
-    ...(product.videos || []).map((url) => ({ type: 'video' as const, url })),
+    ...product.images.map((url) => ({ type: "image" as const, url })),
+    ...(product.videos || []).map((url) => ({ type: "video" as const, url })),
   ];
 
   const handleAddToCart = () => {
@@ -154,27 +154,27 @@ export default function ProductDetails() {
         <Grid item xs={12} md={7}>
           <Box
             sx={{
-              width: '100%',
+              width: "100%",
               height: { xs: 280, md: 600 },
-              bgcolor: '#F5F5F5',
+              bgcolor: "#F5F5F5",
               mb: 2,
-              overflow: 'hidden',
-              position: 'relative',
+              overflow: "hidden",
+              position: "relative",
             }}
           >
-            {media[selectedMediaIndex]?.type === 'image' ? (
+            {media[selectedMediaIndex]?.type === "image" ? (
               <Box
                 component="img"
                 src={media[selectedMediaIndex].url}
                 alt={product.name}
-                sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                sx={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             ) : (
               <video
                 src={media[selectedMediaIndex]?.url}
                 controls
                 autoPlay
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             )}
           </Box>
@@ -184,44 +184,57 @@ export default function ProductDetails() {
                 <Box
                   onClick={() => setSelectedMediaIndex(index)}
                   sx={{
-                    width: '100%',
+                    width: "100%",
                     height: { xs: 80, md: 120 },
-                    position: 'relative',
-                    cursor: 'pointer',
-                    border: '2px solid',
+                    position: "relative",
+                    cursor: "pointer",
+                    border: "2px solid",
                     borderColor:
-                      selectedMediaIndex === index ? 'primary.main' : 'transparent',
-                    transition: 'border-color 0.2s ease',
-                    bgcolor: '#000000',
-                    overflow: 'hidden',
-                    '&:hover': {
-                      borderColor: 'primary.main',
+                      selectedMediaIndex === index
+                        ? "primary.main"
+                        : "transparent",
+                    transition: "border-color 0.2s ease",
+                    bgcolor: "#000000",
+                    overflow: "hidden",
+                    "&:hover": {
+                      borderColor: "primary.main",
                     },
                   }}
                 >
-                  {item.type === 'image' ? (
+                  {item.type === "image" ? (
                     <Box
                       component="img"
                       src={item.url}
                       alt={`${product.name} view ${index + 1}`}
-                      sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   ) : (
-                    <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
+                    <Box
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        position: "relative",
+                      }}
+                    >
                       <video
                         src={item.url}
                         muted
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6 }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          opacity: 0.6,
+                        }}
                       />
                       <Box
                         sx={{
-                          position: 'absolute',
+                          position: "absolute",
                           inset: 0,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#FFFFFF',
-                          bgcolor: 'rgba(0,0,0,0.2)',
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#FFFFFF",
+                          bgcolor: "rgba(0,0,0,0.2)",
                         }}
                       >
                         <PlayCircleOutlineIcon sx={{ fontSize: 28 }} />
@@ -237,16 +250,16 @@ export default function ProductDetails() {
         {/* Product Info */}
         <Grid item xs={12} md={5}>
           <Chip
-            label={product.inStock ? 'In Stock' : 'Out of Stock'}
+            label={product.inStock ? "In Stock" : "Out of Stock"}
             size="small"
-            color={product.inStock ? 'default' : 'error'}
+            color={product.inStock ? "default" : "error"}
             sx={{
               mb: 2,
-              bgcolor: product.inStock ? '#E8F5E9' : '#FFEBEE',
-              color: product.inStock ? '#2E7D32' : '#C62828',
+              bgcolor: product.inStock ? "#E8F5E9" : "#FFEBEE",
+              color: product.inStock ? "#2E7D32" : "#C62828",
               borderRadius: 0,
               fontWeight: 500,
-              fontSize: '0.75rem',
+              fontSize: "0.75rem",
             }}
           />
 
@@ -254,30 +267,30 @@ export default function ProductDetails() {
             {product.name}
           </Typography>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
             <Rating value={product.rating} precision={0.1} readOnly />
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
               {product.rating} ({product.reviews} reviews)
             </Typography>
           </Box>
 
-          <Typography variant="body1" sx={{ color: 'text.secondary', mb: 4 }}>
+          <Typography variant="body1" sx={{ color: "text.secondary", mb: 4 }}>
             {product.description}
           </Typography>
 
           <Divider sx={{ mb: 4 }} />
 
           {/* Quantity Selector */}
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
             <Typography variant="body2" sx={{ fontWeight: 500 }}>
               Quantity
             </Typography>
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                border: '1px solid',
-                borderColor: 'divider',
+                display: "flex",
+                alignItems: "center",
+                border: "1px solid",
+                borderColor: "divider",
               }}
             >
               <IconButton
@@ -288,7 +301,9 @@ export default function ProductDetails() {
               >
                 <RemoveIcon fontSize="small" />
               </IconButton>
-              <Typography sx={{ minWidth: 40, textAlign: 'center', fontSize: '0.875rem' }}>
+              <Typography
+                sx={{ minWidth: 40, textAlign: "center", fontSize: "0.875rem" }}
+              >
                 {quantity}
               </Typography>
               <IconButton
@@ -309,7 +324,7 @@ export default function ProductDetails() {
             disabled={!product.inStock}
             sx={{ mb: 2 }}
           >
-            {product.inStock ? 'Add to Bag' : 'Out of Stock'}
+            {product.inStock ? "Add to Bag" : "Out of Stock"}
           </Button>
 
           <Button variant="outlined" fullWidth size="large">
@@ -321,9 +336,9 @@ export default function ProductDetails() {
             <Accordion
               disableGutters
               sx={{
-                border: '1px solid',
-                borderColor: 'divider',
-                '&:before': { display: 'none' },
+                border: "1px solid",
+                borderColor: "divider",
+                "&:before": { display: "none" },
               }}
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -332,7 +347,7 @@ export default function ProductDetails() {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   {product.dimensions}
                 </Typography>
               </AccordionDetails>
@@ -340,10 +355,10 @@ export default function ProductDetails() {
             <Accordion
               disableGutters
               sx={{
-                border: '1px solid',
-                borderColor: 'divider',
-                borderTop: 'none',
-                '&:before': { display: 'none' },
+                border: "1px solid",
+                borderColor: "divider",
+                borderTop: "none",
+                "&:before": { display: "none" },
               }}
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -352,7 +367,7 @@ export default function ProductDetails() {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   {product.material}
                 </Typography>
               </AccordionDetails>
